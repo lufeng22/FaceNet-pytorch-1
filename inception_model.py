@@ -304,6 +304,7 @@ class faceRecoModel(nn.Module):
         self.average_pool = nn.AvgPool2d(3, 1)
         self.flatten = Flatten()
         self.dense_layer = nn.Linear(736, 128)
+        self.adaptivemaxpooling2d=nn.AdaptiveMaxPool2d(3,1)
         
         
     def forward(self, x):
@@ -342,8 +343,9 @@ class faceRecoModel(nn.Module):
         x = self.block_3b(x)
         
         # Top layer
-        x = self.average_pool(x)
-        x = self.flatten(x)
+        #x = self.average_pool(x)
+	x,_ = self.adaptivemaxpooling2d(x)        
+	x = self.flatten(x)
         x = self.dense_layer(x)
         
         # L2 normalization
