@@ -141,7 +141,7 @@ class inception_block_1a(nn.Module):
         
         self.inception_3a_3x3 = BottleneckedConv(in_channels, 96, 128, 3, padding2=1)
         self.inception_3a_5x5 = BottleneckedConv(in_channels, 16, 32, 5, padding2=2)
-        self.inception_3a_pool = PoolLayer('max', 3, 1, in_channels, 32, 1)
+        self.inception_3a_pool = PoolLayer('max', 3, 2, in_channels, 32, (3, 4, 3, 4))
         self.inception_3a_1x1 = Conv_1x1(in_channels, 64)
     def forward(self, x):
         x_3x3 = self.inception_3a_3x3(x)
@@ -158,7 +158,7 @@ class inception_block_1b(nn.Module):
         super(inception_block_1b, self).__init__()
         self.inception_3b_3x3 = BottleneckedConv(in_channels, 96, 128, 3, padding2=1)
         self.inception_3b_5x5 = BottleneckedConv(in_channels, 32, 64, 5, padding2=2)
-        self.inception_3b_pool = PoolLayer('average', 3, 1, in_channels, 64, 1)
+        self.inception_3b_pool = PoolLayer('average', 3, 3, in_channels, 64, 4)
         self.inception_3b_1x1 = Conv_1x1(in_channels, 64)
     
     def forward(self, x):
@@ -196,7 +196,7 @@ class inception_block_2a(nn.Module):
         super(inception_block_2a, self).__init__()
         self.inception_4a_3x3 = BottleneckedConv(in_channels, 96, 192, 3, 1, 1)
         self.inception_4a_5x5 = BottleneckedConv(in_channels, 32, 64, 5, 1, 2)
-        self.inception_4a_pool = PoolLayer('average', 3, 1, in_channels, 128, 1)
+        self.inception_4a_pool = PoolLayer('average', 3, 3, in_channels, 128, 2)
         self.inception_4a_1x1 = Conv_1x1(in_channels, 256)
         
     def forward(self, x):
@@ -230,7 +230,7 @@ class inception_block_3a(nn.Module):
     def __init__(self, in_channels):
         super(inception_block_3a, self).__init__()
         self.inception_5a_3x3 = BottleneckedConv(in_channels, 96, 384, 3, 1, 1)
-        self.inception_5a_pool = PoolLayer('average', 3, 1, in_channels, 96, 1)
+        self.inception_5a_pool = PoolLayer('average', 3, 3, in_channels, 96, 1)
         self.inception_5a_1x1 = Conv_1x1(in_channels, 256)
     
     def forward(self, x):
@@ -246,7 +246,7 @@ class inception_block_3b(nn.Module):
     def __init__(self, in_channels):
         super(inception_block_3b, self).__init__()
         self.inception_5b_3x3 = BottleneckedConv(in_channels, 96, 384, 3, 1, 1)
-        self.inception_5b_pool = PoolLayer('max', 3, 1, in_channels, 96, 1)
+        self.inception_5b_pool = PoolLayer('max', 3, 2, in_channels, 96, 1)
         self.inception_5b_1x1 = Conv_1x1(in_channels, 256)
         
     def forward(self, x):
