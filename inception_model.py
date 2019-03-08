@@ -121,13 +121,11 @@ class PoolLayer(nn.Module):
         self.zeropad = nn.ZeroPad2d(padding)
         
     def forward(self, x):
-        print(x.shape)
+        x = self.zeropad(x+1)
         x = self.pool(x)
-        print(x.shape)
         x = self.conv(x)
         x = self.bn(x)
         x = self.relu(x)
-        x = self.zeropad(x)
         
         return x
 class Flatten(nn.Module):
