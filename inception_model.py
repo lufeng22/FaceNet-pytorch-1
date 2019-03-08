@@ -121,7 +121,9 @@ class PoolLayer(nn.Module):
         self.zeropad = nn.ZeroPad2d(padding)
         
     def forward(self, x):
+        print(x.shape)
         x = self.pool(x)
+        print(x.shape)
         x = self.conv(x)
         x = self.bn(x)
         x = self.relu(x)
