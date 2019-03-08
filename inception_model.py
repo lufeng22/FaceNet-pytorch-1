@@ -304,7 +304,7 @@ class faceRecoModel(nn.Module):
         self.average_pool = nn.AvgPool2d(3, 1)
         self.flatten = Flatten()
         self.dense_layer = nn.Linear(736, 128)
-        self.adaptivemaxpooling2d=nn.AdaptiveMaxPool2d(3,1)
+        self.adaptivemaxpooling2d=nn.AdaptiveMaxPool2d(1,32)
         
         
     def forward(self, x):
