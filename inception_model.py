@@ -344,7 +344,7 @@ class faceRecoModel(nn.Module):
         
         # Top layer
         #x = self.average_pool(x)
-	x,_ = self.adaptivemaxpooling2d(x)        
+        x,_ = self.adaptivemaxpooling2d(x)        
 	x = self.flatten(x)
         x = self.dense_layer(x)
         
